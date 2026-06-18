@@ -6,7 +6,7 @@ import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
 import { useStore, DEFAULT_SETTINGS } from "@/lib/store";
 import { SEED_SUBSCRIPTIONS } from "@/lib/constants";
 
-const GUEST_KEY = "payfool-guest";
+const GUEST_KEY = "payora-guest";
 
 interface AuthContextValue {
   user: User | null;

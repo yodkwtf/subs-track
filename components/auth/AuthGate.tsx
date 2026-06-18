@@ -3,12 +3,12 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "./auth-context";
-import { LogoMark } from "@/components/brand/Logo";
 
 function FullScreenLoader() {
   return (
     <div className="ambient-bg flex min-h-screen flex-col items-center justify-center gap-4">
-      <LogoMark size={48} className="animate-pulse" />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/logo.svg" alt="" width={48} height={48} className="animate-pulse" />
       <p className="text-sm text-muted-foreground">Loading your dashboard…</p>
     </div>
   );

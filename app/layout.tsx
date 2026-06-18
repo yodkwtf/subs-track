@@ -18,18 +18,18 @@ const geistMono = Geist_Mono({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const title = "Payfool: Track subscriptions, kill the waste";
+const title = "Payora: Track subscriptions, kill the waste";
 const description =
-  "Payfool is a beautiful subscription tracker. See every recurring payment, get renewal reminders, visualize your spend, and use AI to spot subscriptions worth cancelling.";
+  "Payora is a beautiful subscription tracker. See every recurring payment, get renewal reminders, visualize your spend, and use AI to spot subscriptions worth cancelling.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: "%s · Payfool",
+    template: "%s · Payora",
   },
   description,
-  applicationName: "Payfool",
+  applicationName: "Payora",
   keywords: [
     "subscription tracker",
     "subscription manager",
@@ -37,22 +37,28 @@ export const metadata: Metadata = {
     "renewal reminders",
     "spend tracker",
     "cancel subscriptions",
-    "Payfool",
+    "Payora",
   ],
-  authors: [{ name: "Payfool" }],
-  creator: "Payfool",
+  authors: [{ name: "Payora" }],
+  creator: "Payora",
   category: "finance",
   openGraph: {
     type: "website",
-    siteName: "Payfool",
+    siteName: "Payora",
     title,
     description,
     url: siteUrl,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/og-image.png"],
+  },
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/apple-icon.png",
   },
   robots: {
     index: true,

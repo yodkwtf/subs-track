@@ -1,0 +1,17 @@
+# Netlify configuration for Payora (Next.js 15 App Router).
+# Importing this repo on Netlify is enough to deploy: Netlify reads this file,
+# installs the official Next.js runtime, and wires up the API route as a
+# serverless function. The only thing you add by hand is environment variables.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Next.js 15 needs a modern Node. Pin it so builds are reproducible.
+  NODE_VERSION = "20"
+
+# Official Next.js runtime. Netlify installs this automatically from here,
+# so it does not need to be in package.json.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

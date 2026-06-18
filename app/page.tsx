@@ -8,7 +8,6 @@ import {
   ShieldCheck,
   Wand2,
 } from "lucide-react";
-import { Logo, LogoMark } from "@/components/brand/Logo";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +38,8 @@ export default function LandingPage() {
   return (
     <div className="ambient-bg min-h-screen">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <Logo />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-wordmark.svg" alt="Payora" className="h-8 w-auto" />
         <nav className="flex items-center gap-2">
           <Link href="/login" className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}>
             Sign in
@@ -63,7 +63,7 @@ export default function LandingPage() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Payfool brings all your recurring payments together, reminds you before they
+            Payora brings all your recurring payments together, reminds you before they
             renew, visualizes your spend, and uses AI to flag what you can cancel.
           </p>
 
@@ -106,7 +106,8 @@ export default function LandingPage() {
           <div className="glass relative overflow-hidden rounded-3xl p-8 text-center sm:p-12">
             <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-[hsl(var(--cyan))]/20 blur-3xl" />
-            <LogoMark size={44} className="mx-auto" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.svg" alt="" width={44} height={44} className="mx-auto" />
             <h2 className="mt-5 text-2xl font-bold tracking-tight sm:text-3xl">
               Ready to stop overpaying?
             </h2>
@@ -118,7 +119,7 @@ export default function LandingPage() {
               href="/login"
               className={cn(buttonVariants({ size: "lg" }), "mt-6 gap-2")}
             >
-              Open Payfool <ArrowRight className="h-4 w-4" />
+              Open Payora <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </section>
@@ -126,7 +127,8 @@ export default function LandingPage() {
 
       <footer className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 py-6 text-sm text-muted-foreground sm:flex-row">
-          <Logo markSize={24} className="[&>span]:text-base" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-wordmark.svg" alt="Payora" className="h-6 w-auto" />
           <p>Built for people who hate surprise charges.</p>
         </div>
       </footer>

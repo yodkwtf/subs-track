@@ -1,14 +1,14 @@
-# Payfool — Setup Guide
+# Payora - Setup Guide
 
-This is a complete, step-by-step setup for running Payfool locally and deploying it.
+This is a complete, step-by-step setup for running Payora locally and deploying it.
 Everything that needs a key or external account is covered here.
 
-Payfool works out of the box with **zero setup** in guest mode (data stays in your
+Payora works out of the box with **zero setup** in guest mode (data stays in your
 browser). The steps below unlock the optional extras:
 
-- **AI Insights** — needs an Anthropic API key.
-- **Accounts + cloud sync** — needs a free Supabase project.
-- **SEO / social preview** — needs your deployed site URL.
+- **AI Insights**: needs an Anthropic API key.
+- **Accounts + cloud sync**: needs a free Supabase project.
+- **SEO / social preview**: needs your deployed site URL.
 
 ---
 
@@ -16,7 +16,7 @@ browser). The steps below unlock the optional extras:
 
 | Tool | Version | Notes |
 | ---- | ------- | ----- |
-| Node.js | **20 LTS or newer** (22 LTS recommended) | https://nodejs.org/ — check with `node -v` |
+| Node.js | **20 LTS or newer** (22 LTS recommended) | https://nodejs.org/ then check with `node -v` |
 | npm | comes with Node | check with `npm -v` |
 | Git | any recent version | optional, for cloning |
 
@@ -31,7 +31,7 @@ npm run dev
 ```
 
 Open http://localhost:3000. You'll land on the marketing page. Click **Try the live
-demo** → **Continue as guest** to use the full app immediately with sample data.
+demo** then **Continue as guest** to use the full app immediately with sample data.
 
 ---
 
@@ -55,10 +55,10 @@ after changing it.
 
 ---
 
-## 4. AI Insights (Anthropic) — optional
+## 4. AI Insights (Anthropic), optional
 
 1. Go to https://console.anthropic.com/ and sign in.
-2. Open **Settings → API keys → Create key**. Copy it (starts with `sk-ant-`).
+2. Open **Settings -> API keys -> Create key**. Copy it (starts with `sk-ant-`).
 3. Add it to `.env.local`:
    ```
    ANTHROPIC_API_KEY=sk-ant-your-key-here
@@ -66,11 +66,11 @@ after changing it.
 4. Restart the dev server. The AI panel on the dashboard will now work.
 
 > The app uses the `claude-sonnet-4-6` model server-side via `app/api/ai-suggest`.
-> Without a key, every other feature still works — only the AI panel is disabled.
+> Without a key, every other feature still works; only the AI panel is disabled.
 
 ---
 
-## 5. Accounts & cloud sync (Supabase) — optional
+## 5. Accounts & cloud sync (Supabase), optional
 
 Supabase gives every user their own login and stores their data in the cloud. The free
 tier is plenty for a side project.
@@ -78,16 +78,16 @@ tier is plenty for a side project.
 ### 5.1 Create the project
 
 1. Go to https://supabase.com/ and sign in (GitHub login is easiest).
-2. Click **New project**. Pick a name (e.g. `payfool`), set a strong database password
+2. Click **New project**. Pick a name (e.g. `payora`), set a strong database password
    (save it somewhere), and choose the region closest to you.
-3. Wait ~2 minutes for it to provision.
+3. Wait about 2 minutes for it to provision.
 
 ### 5.2 Grab your keys
 
-1. In the project, open **Project Settings (gear icon) → API**.
+1. In the project, open **Project Settings (gear icon) -> API**.
 2. Copy these two values into `.env.local`:
-   - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
-   - **Project API keys → `anon` `public`** → `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+   - **Project URL** goes to `NEXT_PUBLIC_SUPABASE_URL`
+   - **Project API keys -> `anon` `public`** goes to `NEXT_PUBLIC_SUPABASE_ANON_KEY`
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://abcdxyz.supabase.co
@@ -96,10 +96,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOi...
 
 ### 5.3 Create the data table (with security)
 
-Payfool stores each user's whole dataset as a single JSON row, protected by Row Level
+Payora stores each user's whole dataset as a single JSON row, protected by Row Level
 Security so users can only read/write their own row.
 
-1. In Supabase, open **SQL Editor → New query**.
+1. In Supabase, open **SQL Editor -> New query**.
 2. Paste and **Run** this:
 
 ```sql
@@ -122,31 +122,48 @@ create policy "Users manage their own data"
 
 ### 5.4 Configure email auth
 
-1. Open **Authentication → Sign In / Providers** and make sure **Email** is enabled.
-2. For easy local testing, turn **off** "Confirm email" (Authentication → Providers →
-   Email → *Confirm email*). New sign-ups can then log in immediately without an inbox.
+1. Open **Authentication -> Sign In / Providers** and make sure **Email** is enabled.
+2. For easy local testing, turn **off** "Confirm email" (Authentication -> Providers ->
+   Email -> *Confirm email*). New sign-ups can then log in immediately without an inbox.
    - Leave it **on** for production if you want verified emails. With it on, users must
      click the link in their email before their first sign-in.
-3. (Optional) Under **Authentication → URL Configuration**, set the **Site URL** to
+3. (Optional) Under **Authentication -> URL Configuration**, set the **Site URL** to
    `http://localhost:3000` for local dev, and your real domain for production.
 
 ### 5.5 Try it
 
-Restart `npm run dev`, go to **Sign in → Create an account**, and register. Your data now
+Restart `npm run dev`, go to **Sign in -> Create an account**, and register. Your data now
 syncs to Supabase and follows you across devices and browsers. The amber "guest" banner
 disappears once you're signed in.
 
 ---
 
-## 6. Deploy (Vercel)
+## 6. Deploy (Netlify)
+
+The repo ships with a `netlify.toml`, so importing it is the whole setup. The build
+command, the official Next.js runtime (which turns the AI API route into a serverless
+function), and the Node version are already configured. **The only thing you add by hand
+is environment variables.**
 
 1. Push the project to a GitHub repository.
-2. Go to https://vercel.com/, **Add New → Project**, and import the repo.
-3. Under **Environment Variables**, add the same keys from your `.env.local`
-   (`ANTHROPIC_API_KEY`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`,
-   and `NEXT_PUBLIC_SITE_URL` set to your Vercel domain).
-4. Deploy. Then in Supabase → **Authentication → URL Configuration**, add your Vercel
-   domain to **Site URL** / **Redirect URLs** so logins work in production.
+2. Go to https://app.netlify.com/, click **Add new site -> Import an existing project**,
+   pick your Git provider, and select the repo. Netlify reads `netlify.toml` and
+   auto-detects Next.js, so leave the build settings as-is and click **Deploy**.
+3. Add your environment variables in **Site configuration -> Environment variables**
+   (the same keys from your `.env.local`):
+   - `ANTHROPIC_API_KEY` (optional, for the AI panel)
+   - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` (optional, for accounts)
+   - `NEXT_PUBLIC_SITE_URL` set to your Netlify URL, e.g. `https://your-site.netlify.app`
+4. Trigger a redeploy (**Deploys -> Trigger deploy -> Deploy site**) so the new env vars
+   are baked in. If you added them before the first deploy, you can skip this.
+5. In Supabase, under **Authentication -> URL Configuration**, add your Netlify domain to
+   **Site URL** / **Redirect URLs** so logins work in production.
+
+> The app works on Netlify with no env vars at all (guest mode only). Add the keys above
+> to unlock AI Insights and real accounts.
+>
+> Do **not** add `output: "export"` to `next.config.mjs` for Netlify: static export would
+> disable the `/api/ai-suggest` serverless function. The default build is correct.
 
 ---
 
@@ -155,9 +172,9 @@ disappears once you're signed in.
 | Symptom | Fix |
 | ------- | --- |
 | "Accounts aren't set up yet" notice on the login page | `NEXT_PUBLIC_SUPABASE_*` vars are missing or the dev server wasn't restarted after editing `.env.local`. |
-| Sign-up succeeds but can't sign in | "Confirm email" is on — check your inbox, or disable it (step 5.4). |
+| Sign-up succeeds but can't sign in | "Confirm email" is on: check your inbox, or disable it (step 5.4). |
 | AI panel says key not configured | Add `ANTHROPIC_API_KEY` to `.env.local` and restart. |
-| Data not syncing | Confirm the SQL in 5.3 ran and RLS policy exists. Check the browser console for Supabase errors. |
+| Data not syncing | Confirm the SQL in 5.3 ran and the RLS policy exists. Check the browser console for Supabase errors. |
 | Social preview image is blank | Set `NEXT_PUBLIC_SITE_URL` and redeploy; the image is generated at `/opengraph-image`. |
 
 ---

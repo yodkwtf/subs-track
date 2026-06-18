@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { PanelLeftClose, PanelLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { LogoMark } from "@/components/brand/Logo";
 import { NAV } from "./nav-config";
 
 export function Sidebar() {
@@ -24,16 +23,23 @@ export function Sidebar() {
       <Link
         href="/dashboard"
         className="flex h-16 items-center gap-2 px-4 focus-ring"
-        aria-label="Payfool dashboard"
+        aria-label="Payora dashboard"
       >
-        <LogoMark size={36} className="shrink-0 shadow-lg shadow-primary/30" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logo.svg"
+          alt=""
+          width={36}
+          height={36}
+          className="shrink-0 shadow-lg shadow-primary/30"
+        />
         {!collapsed && (
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-base font-semibold tracking-tight"
           >
-            Payfool
+            Payora
           </motion.span>
         )}
       </Link>

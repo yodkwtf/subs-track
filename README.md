@@ -1,6 +1,6 @@
-# 💸 Payfool — Subscription Tracker
+# 💸 Payora - Subscription Tracker
 
-Track every subscription, see where your money goes, and kill the waste. Payfool gives
+Track every subscription, see where your money goes, and kill the waste. Payora gives
 you a premium dashboard for recurring payments, renewal reminders, spend analytics, and
 AI-powered cancellation suggestions.
 
@@ -30,19 +30,19 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000), hit **Try the live demo**, and
 **Continue as guest** to explore with sample data right away.
 
-To enable AI Insights and real accounts, follow [guide.md](./guide.md) — it covers the
+To enable AI Insights and real accounts, follow [guide.md](./guide.md): it covers the
 Anthropic key and the (free) Supabase setup step by step.
 
 ## Features
 
-- **Landing page** — public, modern marketing page; every app route is protected behind it.
-- **Auth** — email/password accounts via Supabase, plus a one-click **guest mode** with mock data.
-- **Dashboard** — hero stats, color-coded upcoming renewals, recent activity, AI insights, quick-add.
-- **Subscriptions** — fuzzy search, filter (category / status / billing), sort, grid⇄list toggle, slide-over detail with full CRUD + pause/resume/archive. Duplicate names are blocked.
-- **Analytics** — real 12-month spend trend (built from each subscription's start date), category donut, billing cadence, "most expensive" & "longest held".
-- **AI Insights** — `POST /api/ai-suggest` sends your list to Claude server-side and returns dismissible cancellation suggestions with estimated annual savings.
-- **Settings** — profile (display name), default currency (14 currencies with flags, INR by default), reminder threshold, JSON import/export, clear-all. Every change confirms with a toast.
-- **Brand logos** — 160+ colored Simple Icons, plus uncolored react-icons fallbacks (Amazon, Microsoft, etc.) for brands Simple Icons no longer ships.
+- **Landing page**: public, modern marketing page; every app route is protected behind it.
+- **Auth**: email/password accounts via Supabase, plus a one-click **guest mode** with mock data.
+- **Dashboard**: hero stats, color-coded upcoming renewals, recent activity, AI insights, quick-add.
+- **Subscriptions**: fuzzy search, filter (category / status / billing), sort, grid/list toggle, slide-over detail with full CRUD + pause/resume/archive. Duplicate names are blocked.
+- **Analytics**: real 12-month spend trend (built from each subscription's start date), category donut, billing cadence, "most expensive" & "longest held".
+- **AI Insights**: `POST /api/ai-suggest` sends your list to Claude server-side and returns dismissible cancellation suggestions with estimated annual savings.
+- **Settings**: profile (display name), default currency (14 currencies with flags, INR by default), reminder threshold, JSON import/export, clear-all. Every change confirms with a toast.
+- **Brand logos**: 160+ colored Simple Icons, plus uncolored react-icons fallbacks (Amazon, Microsoft, etc.) for brands Simple Icons no longer ships.
 
 ## Data & sync
 
@@ -56,7 +56,7 @@ Anthropic key and the (free) Supabase setup step by step.
 - Skip-to-content link, focus trap in dialogs/sheets (Radix), `aria-*` labels, keyboard-navigable.
 - `prefers-reduced-motion` respected via Framer Motion and a global CSS fallback.
 - Charts and the AI panel are lazy-loaded with `next/dynamic`; fonts via `next/font`.
-- SEO-ready: rich metadata, a generated 1200×630 Open Graph image, and a branded favicon.
+- SEO-ready: rich metadata, a generated 1200x630 Open Graph image, and a branded favicon.
 
 ## Project structure
 
