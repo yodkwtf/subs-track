@@ -47,6 +47,10 @@
 - [ ] For the email field, when you first enter with "@" it gives you a warning but then that warning keeps appearing at each keypress; should only show on incorrect submission
 - [ ] I am not sure so I want help in understanding if allowing future date for start date of a subscription makes sense or not
 
+- [ ] the scroll is not working while choosing the icons or while choosing the category when new subscription add popup is open
+- [ ] The create an account link on guest view banner is taking to login view and not the signup view
+- [ ] The banner on guest mode is also not very visible in the light mode. Fix that and check for same colors across the app to handle the visibility on light mode.
+
 #### Next steps
 
 > Added for you to verify/decide after your own testing. Nothing here is started.
